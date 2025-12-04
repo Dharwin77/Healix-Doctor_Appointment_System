@@ -27,13 +27,25 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: ["https://healix-alpha.vercel.app", "http://localhost:5173", "http://localhost:5174", "https://healix-med.vercel.app"],
+    origin: [
+      "https://healix-git-main-dharwin-ss-projects.vercel.app",
+      "https://healix-alpha.vercel.app",
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "https://healix-med.vercel.app"
+    ],
     methods: ["GET", "POST"]
   }
 });
 
 app.use(cors({
-  origin: ["https://healix-alpha.vercel.app", "http://localhost:5173", "http://localhost:5174", "https://healix-med.vercel.app"],
+  origin: [
+    "https://healix-git-main-dharwin-ss-projects.vercel.app",
+    "https://healix-alpha.vercel.app",
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "https://healix-med.vercel.app"
+  ],
   credentials: true
 }));
 app.use(express.json());
