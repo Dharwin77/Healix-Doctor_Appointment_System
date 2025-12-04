@@ -28,6 +28,7 @@ const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
     origin: [
+      "https://healix-rho.vercel.app",
       "https://healix-git-main-dharwin-ss-projects.vercel.app",
       "https://healix-alpha.vercel.app",
       "http://localhost:5173",
@@ -40,6 +41,7 @@ const io = socketIo(server, {
 
 app.use(cors({
   origin: [
+    "https://healix-rho.vercel.app",
     "https://healix-git-main-dharwin-ss-projects.vercel.app",
     "https://healix-alpha.vercel.app",
     "http://localhost:5173",
