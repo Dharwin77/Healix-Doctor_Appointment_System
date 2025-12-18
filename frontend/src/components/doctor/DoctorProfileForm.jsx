@@ -24,7 +24,6 @@ const initialState = {
     zipCode: "",
     country: "India",
   },
-  medicalLicenseNumber: "",
   specializations: [],
   yearsOfExperience: "",
   bio: "",
@@ -283,7 +282,6 @@ const DoctorProfileForm = () => {
       profile.address.city &&
       profile.address.state &&
       profile.address.zipCode &&
-      profile.medicalLicenseNumber &&
       Array.isArray(profile.specializations) &&
       profile.specializations.length > 0 &&
       profile.yearsOfExperience !== "" &&
@@ -457,19 +455,6 @@ const DoctorProfileForm = () => {
                 <option value="female">Female</option>
                 <option value="other">Other</option>
               </select>
-            </div>
-            <div>
-              <label className="block text-sm mb-1">
-                Medical License Number <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                name="medicalLicenseNumber"
-                className="w-full border rounded px-2 py-1"
-                value={profile.medicalLicenseNumber}
-                onChange={handleChange}
-                required
-              />
             </div>
             <div>
               <label className="block text-sm mb-1">
