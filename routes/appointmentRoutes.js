@@ -73,7 +73,7 @@ router.get("/test-digitalsamba", async (req, res) => {
     
     const response = await axios({
       method: 'GET',
-      url: `${DIGITAL_SAMBA_BASE_URL}/rooms`,
+      url: `${DIGITAL_SAMBA_BASE_URL}/api/v1/rooms`,
       headers: {
         'Authorization': `Bearer ${DEVELOPER_KEY}`,
         'Content-Type': 'application/json'

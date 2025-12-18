@@ -31,7 +31,7 @@ const makeDigitalSambaRequest = async (method, endpoint, data = null) => {
   try {
     const config = {
       method,
-      url: `${DIGITAL_SAMBA_BASE_URL}${endpoint}`,
+      url: `${DIGITAL_SAMBA_BASE_URL}/api/v1${endpoint}`,
       headers: {
         'Authorization': `Bearer ${DEVELOPER_KEY}`,
         'Content-Type': 'application/json'
@@ -72,8 +72,8 @@ const checkAndUpdateAppointmentStatus = async (appointment) => {
   if (appointmentDate === today) {
     let newStatus = appointment.status;
     
-    // If appointment is pending and current time >= start time, make it ongoing
-    if (appointment.status === 'pending' && currentTime >= appointment.startTime) {
+    // If appointment is pending/confirmed/pending_confirmation and current time >= start time, make it ongoing
+    if ((appointment.status === 'pending' || appointment.status === 'confirmed' || appointment.status === 'pending_confirmation') && currentTime >= appointment.startTime) {
       newStatus = 'ongoing';
     }
     // If appointment is ongoing and current time >= end time, make it completed
@@ -298,7 +298,7 @@ class AppointmentController {
 
       // Generate room ID first
       const roomId = generateRoomId();
-      let roomUrl = `https://healix.digitalsamba.com/${roomId}`;
+      let roomUrl = null;
       
       // Create Digital Samba room
       try {
@@ -340,7 +340,10 @@ class AppointmentController {
         console.log('Room data:', JSON.stringify(roomData, null, 2));
         const roomResponse = await makeDigitalSambaRequest('POST', '/rooms', roomData);
         console.log('Room created successfully:', roomResponse);
-        console.log('Final room URL:', roomUrl);
+        
+        // Use the room_url from the API response
+        roomUrl = roomResponse.room_url;
+        console.log('Final room URL from API:', roomUrl);
       } catch (error) {
         console.error('Failed to create Digital Samba room:', error);
         console.error('Error details:', {
@@ -348,8 +351,9 @@ class AppointmentController {
           status: error.response?.status,
           data: error.response?.data
         });
-        // Keep the room URL even if API call fails - room might still be accessible
-        console.log('Continuing with room URL despite API error:', roomUrl);
+        // Fallback URL if API call fails
+        roomUrl = `https://${SUBDOMAIN}.digitalsamba.com/${roomId}`;
+        console.log('Using fallback room URL:', roomUrl);
       }
 
       // Create new appointment with room URL
