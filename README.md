@@ -491,7 +491,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contact
 
 **Dharwin S**
-- Email: [dharwins2004@gmail.com]
+- Email: [dharwinsangamani@gmail.com]
 - GitHub: [@Dharwin77](https://github.com/Dharwin77)
 - LinkedIn: [Dharwin S](https://linkedin.com/in/dharwin-s)
 
@@ -521,3 +521,4 @@ For issues, questions, or feature requests, please:
 ---
 
 **⚠️ Disclaimer**: Healix is a healthcare management platform. Always consult with qualified healthcare professionals for medical advice, diagnosis, or treatment.
+
